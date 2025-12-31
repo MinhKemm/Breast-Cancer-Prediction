@@ -7,8 +7,8 @@ import os
 from sklearn.metrics import accuracy_score, f1_score
 import matplotlib.ticker as ticker
 
-def compare_dermatology_models(model_paths):
-    
+def compare_models(model_paths):
+
     # Tạo thư mục Results
     output_dir = 'Results'
     if not os.path.exists(output_dir):
@@ -99,4 +99,4 @@ if __name__ == "__main__":
         'XGBoost': '/Users/binhminh/Documents/Intro ML code /Notebooks/models/xgboost.pkl',
         'OSEL' : '/Users/binhminh/Documents/Intro ML code /Notebooks/models/osel.pkl'
     }
-    compare_dermatology_models(MODELS)
+    compare_models(MODELS)
