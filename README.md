@@ -171,7 +171,7 @@ Results/
 ```
 
 1. Phân tích Hiệu suất
-Kết quả thu được từ quá trình chạy mã nguồn Compare_models.py cho thấy sự phân hóa rõ rệt giữa các nhóm thuật toán:
+- Kết quả thu được từ quá trình chạy mã nguồn Compare_models.py cho thấy sự phân hóa rõ rệt giữa các nhóm thuật toán:
 - Độ chính xác tổng thể (Accuracy):
   - Mô hình SVM dẫn đầu thực nghiệm với độ chính xác đạt 99.12%.
   - Mô hình đề xuất OSEL cùng với AdaBoost và Logistic Regression cho thấy sự ổn định cao với cùng mức 98.25%.
@@ -182,7 +182,7 @@ Kết quả thu được từ quá trình chạy mã nguồn Compare_models.py c
   - Chỉ số F1-Score của OSEL đạt 0.9824, cho thấy sự cân bằng hoàn hảo giữa độ chính xác và khả năng thu hồi, không gây ra tình trạng chẩn đoán nhầm quá mức (False Positive).
 
 2. Đánh giá Mô hình Đề xuất OSEL
-Mô hình OSEL (Optimized Stacking Ensemble Learning) không chỉ đạt con số ấn tượng mà còn mang lại những ưu thế kỹ thuật so với các phương pháp truyền thống:
+- Mô hình OSEL (Optimized Stacking Ensemble Learning) không chỉ đạt con số ấn tượng mà còn mang lại những ưu thế kỹ thuật so với các phương pháp truyền thống:
 - Sức mạnh từ sự kết hợp (Stacking): Bằng cách kết hợp dự đoán từ các "chuyên gia" như SVM, Random Forest và Logistic Regression, OSEL tận dụng được thế mạnh của từng thuật toán để đưa ra quyết định cuối cùng.
 - Tối ưu hóa bằng Genetic Algorithm (GA): Thay vì lựa chọn mô hình thủ công, dự án đã triển khai GA để tự động hóa việc tìm kiếm tổ hợp các bộ phân loại cơ sở (base-classifiers) tối ưu nhất, giúp mô hình thích nghi tốt hơn với dữ liệu.
 - Tính ổn định cao: Dù kết quả SVM trong thực nghiệm này đạt con số cao nhất, OSEL rất có khả năng đạt tới độ chính xác cao hơn nếu được tinh chỉnh đầy đủ các siêu tham số.
