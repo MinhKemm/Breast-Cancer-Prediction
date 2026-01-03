@@ -6,16 +6,32 @@
 ## 📋 Giới thiệu Dự án
 Dự án tập trung vào việc xây dựng, huấn luyện và so sánh các mô hình Machine Learning nhằm dự đoán khả năng mắc ung thư vú dựa trên các đặc trưng lâm sàng từ bộ dữ liệu Wisconsin.
 
-Dữ liệu: Sử dụng bộ dữ liệu Breast Cancer Wisconsin (Diagnostic) từ UCI Machine Learning Repository. 
-- Số lượng mẫu: 569 mẫu (357 Benign, 212 Malignant).
-- Đặc trưng: 30 thuộc tính số thực mô tả các đặc điểm của tế bào (radius, texture, perimeter, area, smoothness, v.v.).
+---
 
+## 📊 Dataset
+Dự án sử dụng bộ dữ liệu chuẩn trong nghiên cứu y sinh để đảm bảo tính khách quan và chính xác:
+- Nguồn dữ liệu: Sử dụng bộ dữ liệu Breast Cancer Wisconsin (Diagnostic) từ kho lưu trữ UCI Machine Learning Repository.
+- Quy mô mẫu: Tổng cộng 569 mẫu dữ liệu, bao gồm: 
+  - Lành tính (Benign): 357 mẫu (chiếm 62.7%).
+  - Ác tính (Malignant): 212 mẫu (chiếm 37.3%).
+- Đặc trưng lâm sàng: Mỗi mẫu được mô tả bởi 30 thuộc tính số thực rút gọn từ hình ảnh số hóa của các khối u ở vú. Các đặc tính tiêu biểu bao gồm:
+  - Kích thước: Bán kính (radius), chu vi (perimeter), diện tích (area).
+  - Hình dạng: Độ nhẵn (smoothness), độ gọn (compactness), độ lõm (concavity).
+  - Chi tiết khác: Kết cấu (texture), các điểm lõm (concave points), tính đối xứng (symmetry) và kích thước fractal.
+  - Dữ liệu thiếu: Bộ dữ liệu hoàn chỉnh, không có giá trị bị thiếu (missing values), giúp tăng độ tin cậy cho quá trình huấn luyện mô hình.
+  
+---
+
+## 🎯 Mục tiêu
 Mục tiêu chính:
 - Tối ưu độ chính xác chẩn đoán thông qua kiến trúc Ensemble Learning
 - Đặc biệt chú trọng các chỉ số F1-Score, Recall và Accuracy để giảm thiểu sai sót y tế.
 - Triển khai mô hình OSEL và đánh giá hiệu suất so với các thuật toán truyền thống
 
-- 🧬 Mô hình OSEL (Optimized Stacking Ensemble Learning)
+---
+
+## 🧬 Áp dụng mô hình OSEL kết hợp thuật toán di truyền
+🧬 Mô hình OSEL (Optimized Stacking Ensemble Learning)
 Mô hình OSEL là điểm nhấn kỹ thuật của dự án, được phát triển dựa trên nghiên cứu tối ưu hóa quá trình học tập kết hợp (Stacking).
 
 1. Kiến trúc Stacking
