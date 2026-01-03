@@ -6,6 +6,10 @@
 ## 📋 Giới thiệu Dự án
 Dự án tập trung vào việc xây dựng, huấn luyện và so sánh các mô hình Machine Learning nhằm dự đoán khả năng mắc ung thư vú dựa trên các đặc trưng lâm sàng từ bộ dữ liệu Wisconsin.
 
+Dữ liệu: Sử dụng bộ dữ liệu Breast Cancer Wisconsin (Diagnostic) từ UCI Machine Learning Repository. 
+- Số lượng mẫu: 569 mẫu (357 Benign, 212 Malignant).
+- Đặc trưng: 30 thuộc tính số thực mô tả các đặc điểm của tế bào (radius, texture, perimeter, area, smoothness, v.v.).
+
 Mục tiêu chính:
 - Tối ưu độ chính xác chẩn đoán thông qua kiến trúc Ensemble Learning
 - Đặc biệt chú trọng các chỉ số F1-Score, Recall và Accuracy để giảm thiểu sai sót y tế.
@@ -18,7 +22,7 @@ Mô hình OSEL là điểm nhấn kỹ thuật của dự án, được phát tr
 - OSEL không sử dụng một bộ phân loại duy nhất mà kết hợp hai tầng dữ liệu:
   - Base-classifiers (Tầng cơ sở): Sử dụng các thuật toán mạnh mẽ như SVM, KNN, Random Forest, và Decision Tree để tạo ra các dự đoán ban đầu (meta-data).
   - Meta-classifier (Bộ siêu phân loại): Tiếp nhận kết quả từ tầng cơ sở dưới dạng ma trận đặc trưng mới để đưa ra dự đoán cuối cùng, giúp giảm thiểu sai số và độ lệch.
-  - 
+ 
 2. Tối ưu hóa bằng Thuật toán Di truyền (Genetic Algorithm)
 Điểm khác biệt của OSEL là việc tích hợp Thuật toán Di truyền (GA) để tự động hóa việc lựa chọn tổ hợp các bộ phân loại cơ sở tối ưu nhất.
 GA giúp tìm kiếm trong không gian các mô hình để xác định các mô hình tốt nhất cho kết quả tốt nhất thay vì chọn lựa thủ công.
@@ -30,6 +34,7 @@ Sử dụng độ chính xác làm hàm thích nghi để tinh chỉnh các tổ
 ```plaintext
 .
 ├── Data/                   # Dữ liệu thô & dữ liệu đã xử lý (.npy)
+│   ├── Data_preprocessing.ipynb
 ├── Notebooks/              # Các Jupyter Notebook thực nghiệm
 │   ├── models/             # Lưu trữ các mô hình đã huấn luyện (.pkl)
 │   │   ├── adaboost.pkl
@@ -43,7 +48,6 @@ Sử dụng độ chính xác làm hàm thích nghi để tinh chỉnh các tổ
 │   │   └── xgboost.pkl
 │   ├── AdaBoost.ipynb
 │   ├── Decision_tree.ipynb
-│   ├── Data_preprocessing.ipynb
 │   ├── Gradient_boosting.ipynb
 │   ├── KNN.ipynb
 │   ├── Logistic_Regression.ipynb
@@ -150,4 +154,24 @@ sẽ được tự động lưu trong thư mục:
 Results/
 ```
 
-📌 Kết quả thực nghiệm cho thấy mô hình **OSEL** thường đạt hiệu suất **ổn định và cao nhất** trên tập dữ liệu thử nghiệm.
+1. Phân tích Hiệu suất
+Kết quả thu được từ quá trình chạy mã nguồn Compare_models.py cho thấy sự phân hóa rõ rệt giữa các nhóm thuật toán:
+- Độ chính xác tổng thể (Accuracy):
+  - Mô hình SVM dẫn đầu thực nghiệm với độ chính xác đạt 99.12%.
+  - Mô hình đề xuất OSEL cùng với AdaBoost và Logistic Regression cho thấy sự ổn định cao với cùng mức 98.25%.
+  - Các thuật toán đơn lẻ như KNN (93.86%) và Decision Tree (96.49%) có hiệu suất thấp hơn rõ rệt.
+- Chỉ số F1 và Độ nhạy (Recall):
+  - Trong bài toán chẩn đoán ung thư, Recall là chỉ số sống còn giúp giảm thiểu tỷ lệ bỏ sót bệnh nhân (False Negative).
+  - Mô hình OSEL đạt mức Recall ấn tượng 98.25%, chứng minh khả năng phát hiện tế bào ác tính cực kỳ hiệu quả và tin cậy.
+  - Chỉ số F1-Score của OSEL đạt 0.9824, cho thấy sự cân bằng hoàn hảo giữa độ chính xác và khả năng thu hồi, không gây ra tình trạng chẩn đoán nhầm quá mức (False Positive).
+
+2. Đánh giá Mô hình Đề xuất OSEL
+Mô hình OSEL (Optimized Stacking Ensemble Learning) không chỉ đạt con số ấn tượng mà còn mang lại những ưu thế kỹ thuật so với các phương pháp truyền thống:
+- Sức mạnh từ sự kết hợp (Stacking): Bằng cách kết hợp dự đoán từ các "chuyên gia" như SVM, Random Forest và Logistic Regression, OSEL tận dụng được thế mạnh của từng thuật toán để đưa ra quyết định cuối cùng.
+- Tối ưu hóa bằng Genetic Algorithm (GA): Thay vì lựa chọn mô hình thủ công, dự án đã triển khai GA để tự động hóa việc tìm kiếm tổ hợp các bộ phân loại cơ sở (base-classifiers) tối ưu nhất, giúp mô hình thích nghi tốt hơn với dữ liệu.
+- Tính ổn định cao: Dù kết quả SVM trong thực nghiệm này đạt con số cao nhất, OSEL rất có khả năng đạt tới độ chính xác cao hơn nếu được tinh chỉnh đầy đủ các siêu tham số.
+
+
+## 📚 Tham khảo
+Dự án được thực hiện dựa trên phương pháp nghiên cứu của bài báo:
+Kumar, M., Singhal, S., Shekhar, S., Sharma, B., & Srivastava, G. (2022). "Optimized Stacking Ensemble Learning Model for Breast Cancer Detection and Classification Using Machine Learning". Sustainability, 14(21), 13998.
