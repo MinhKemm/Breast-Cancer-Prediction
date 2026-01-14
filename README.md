@@ -101,7 +101,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🚀 Hướng dẫn Cài đặt và Sử dụng
+## 🚀 Hướng dẫn Huấn luyện mô hình
 Để đảm bảo dự án chạy ổn định và không xung đột thư viện, hãy làm theo các bước sau:
 ### 1️⃣ Khởi tạo Môi trường ảo (Khuyến nghị)
 Sử dụng môi trường ảo giúp quản lý thư viện độc lập:
@@ -187,6 +187,33 @@ Results/
 - Tối ưu hóa bằng Genetic Algorithm (GA): Thay vì lựa chọn mô hình thủ công, dự án đã triển khai GA để tự động hóa việc tìm kiếm tổ hợp các bộ phân loại cơ sở (base-classifiers) tối ưu nhất, giúp mô hình thích nghi tốt hơn với dữ liệu.
 - Tính ổn định cao: Dù kết quả SVM trong thực nghiệm này đạt con số cao nhất, OSEL rất có khả năng đạt tới độ chính xác cao hơn nếu được tinh chỉnh đầy đủ các siêu tham số.
 
+## Hướng dẫn sử dụng công cụ trực quan hóa (Streamlit)
+### Bước 1: Nhập lệnh trong Terminal
+```plaintexts
+py -m streamlit run app.py
+```
+
+Sau khi chạy, một địa chỉ local (thường là `http://localhost:8501`) sẽ hiện ra.
+
+### Bước 2: Nhập dữ liệu chẩn đoán
+Giao diện cung cấp cho bạn 2 lựa chọn nhập liệu linh hoạt:
+
+Cách 1 - Nhập thủ công: Điền chính xác 30 chỉ số xét nghiệm tế bào vào các ô tương ứng. Cách này phù hợp khi bạn muốn kiểm tra thay đổi của từng chỉ số đơn lẻ.
+
+Cách 2 - Nhập nhanh: Copy một dòng dữ liệu từ file CSV (ví dụ: 17.99, 10.38, 122.8, ...) và dán vào ô văn bản. Hệ thống sẽ tự động tách 30 tham số dựa trên dấu phẩy.
+
+### Bước 3: Chọn mô hình và xem kết quả
+Tại thanh bên (Sidebar), chọn một trong các mô hình đã huấn luyện (Random Forest, SVM, XGBoost, OSEL...).
+
+### Bước 4: Nhấn nút "Chẩn đoán".
+
+Hệ thống sẽ hiển thị kết quả:
+
+Ác tính (M): Hiển thị màu đỏ kèm cảnh báo.
+
+Lành tính (B): Hiển thị màu xanh an toàn.
+
+Độ tin cậy (%): Hiển thị xác suất mô hình tin tưởng vào quyết định đó (đối với các mô hình hỗ trợ predict_proba).
 
 ## 📚 Tham khảo
 Dự án được thực hiện dựa trên phương pháp nghiên cứu của bài báo:
